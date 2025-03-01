@@ -1,3 +1,4 @@
-# nvim
+# nvim configuration
 
-nvim config
+## Install
+git clone git@github.com:TonTonXan/nvim.git ~/.config/
