@@ -2,5 +2,5 @@
 
 ## Install
 ```
-https://github.com/TonTonXan/nvim.git ~/.config/
+git clone https://github.com/TonTonXan/nvim.git ~/.config/
 ```

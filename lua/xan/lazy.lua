@@ -20,3 +20,6 @@ require("lazy").setup({ { import = "xan.plugins" }, { import = "xan.plugins.lsp"
     notify = false,
   },
 })
+
+-- Apply colorscheme
+vim.cmd("colorscheme cyberdream")
