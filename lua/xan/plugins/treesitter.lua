@@ -1,37 +1,79 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPre", "BufNewFile" },
-  build = ":TSUpdate",
-  dependencies = {
-    "windwp/nvim-ts-autotag",
-  },
-  config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter.configs")
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function () 
+            local configs = require("nvim-treesitter.configs")
 
-    -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
-      highlight = {
-        enable = true,
-      },
-      -- enable indentation
-      indent = { enable = true },
-      -- enable autotagging (w/ nvim-ts-autotag plugin)
-      autotag = {
-        enable = true,
-      },
-      -- ensure these language parsers are installed
-      ensure_installed = {
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
-      },
-    })
-  end,
+            configs.setup({
+                ensure_installed = { 
+                    "arduino",
+                    "asm",
+                    "bash",
+                    "bitbake",
+                    "c",
+                    "c_sharp",
+                    "cmake",
+                    "cpp",
+                    "css",
+                    "csv",
+                    "devicetree",
+                    "diff",
+                    "dockerfile",
+                    "git_config",
+                    "git_rebase",
+                    "gitattributes",
+                    "gitcommit",
+                    "gitignore",
+                    "go",
+                    "gpg",
+                    "groovy",
+                    "html",
+                    "http",
+                    "ini",
+                    "java",
+                    "javadoc",
+                    "javascript",
+                    "jinja",
+                    "jq",
+                    "json",
+                    "json5",
+                    "kconfig",
+                    "latex",
+                    "lua",
+                    "luadoc",
+                    "make",
+                    "markdown",
+                    "markdown_inline",
+                    "nginx",
+                    "ninja",
+                    "objdump",
+                    "ocaml",
+                    "passwd",
+                    "pem",
+                    "perl",
+                    "php",
+                    "python",
+                    "regex",
+                    "robot",
+                    "ruby",
+                    "ssh_config",
+                    "tmux",
+                    "typescript",
+                    "verilog",
+                    "vhdl",
+                    "vim",
+                    "vimdoc",
+                    "xml",
+                    "yaml",
+                    "zig"
+                },
+            sync_install = false,
+            highlight = {
+                enable = true,
+            },
+            indent = { enable = true },  
+            })
+        end
+    }
 }

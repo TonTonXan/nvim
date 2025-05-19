@@ -36,7 +36,7 @@ opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 -- show whitespace, tabs, end of line
-opt.listchars = {eol = '↵', tab = '>·', trail = '~', space = '·'}
+opt.listchars = {eol = '↵', tab = '-→', trail = '~', space = '·'}
 opt.list = true
 
 -- set vertical marker
