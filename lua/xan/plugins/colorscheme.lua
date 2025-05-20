@@ -4,9 +4,7 @@ return {
   priority = 1000, -- make sure to load this before all the other start plugins
   config = function()
     require('onedark').setup {
-      style = 'darker',
-      toggle_style_key = "<leader>uu",
-      toggle_style_list = {'dark', 'darker', 'cool', 'deep'},
+      style = 'deep',
       code_style = {
         comments = 'italic',
         keywords = 'none',
