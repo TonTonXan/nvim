@@ -1,6 +1,3 @@
-# nvim configuration
+# Neovim configuration
 
-## Install
-```
-git clone https://github.com/TonTonXan/nvim.git ~/.config/
-```
+Based on kickstart.nvim: https://github.com/nvim-lua/kickstart.nvim
