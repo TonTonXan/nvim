@@ -102,6 +102,9 @@ vim.keymap.set('n', '<leader>e', ":Oil<CR>")
 
 vim.lsp.enable({ "lua_ls" })
 
+
+map('n', '<leader>lg', '<cmd>LazyGit<CR>')
+
 -- Color scheme
 vim.cmd("colorscheme modus")
 vim.cmd(":hi statusline guibg=NONE")
