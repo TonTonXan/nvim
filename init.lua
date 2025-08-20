@@ -55,6 +55,11 @@ map("n", "<C-l>", "<C-w><C-l>")
 map("n", "<C-j>", "<C-w><C-j>")
 map("n", "<C-k>", "<C-w><C-k>")
 
+map('n', '<leader>sv', '<C-w>v')
+map('n', '<leader>sh', '<C-w>s')
+map('n', '<leader>se', '<C-w>=')
+map('n', '<leader>sx', '<cmd>close<CR>')
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking",
 	group = vim.api.nvim_create_augroup("kickstart_highlight_yank", { clear = true }),
@@ -96,9 +101,9 @@ require "mini.pick".setup()
 require "oil".setup()
 require "mason".setup()
 
-vim.keymap.set('n', '<leader>f', ":Pick files<CR>")
-vim.keymap.set('n', '<leader>h', ":Pick help<CR>")
-vim.keymap.set('n', '<leader>e', ":Oil<CR>")
+map('n', '<leader>f', ":Pick files<CR>")
+map('n', '<leader>h', ":Pick help<CR>")
+map('n', '<leader>e', ":Oil<CR>")
 
 vim.lsp.enable({ "lua_ls" })
 
