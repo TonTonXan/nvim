@@ -60,6 +60,12 @@ map('n', '<leader>sh', '<C-w>s')
 map('n', '<leader>se', '<C-w>=')
 map('n', '<leader>sx', '<cmd>close<CR>')
 
+map('n', '<leader><tab><tab>', '<cmd>tabnew<CR>')
+map('n', '<leader><tab>x', '<cmd>tabclose<CR>')
+map('n', '<leader><tab>n', '<cmd>tabn<CR>')
+map('n', '<leader><tab>p', '<cmd>tabp<CR>')
+map('n', '<leader><tab>f', '<cmd>tabnew %<CR>')
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking",
 	group = vim.api.nvim_create_augroup("kickstart_highlight_yank", { clear = true }),
