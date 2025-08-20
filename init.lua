@@ -92,6 +92,7 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/chomosuke/typst-preview.nvim" },
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 })
 
 -- auto complete
