@@ -8,11 +8,6 @@ g.mapleader = " "
 
 g.have_nerd_font = true
 
--- o.cursorcolumn = false
--- o.ignorecase = true
--- o.incsearch = true
--- o.infercase = true
-
 -- Global settings
 o.compatible = false
 o.hidden = true
@@ -63,17 +58,17 @@ o.showfulltag = true
 -- Nice statusbar
 o.laststatus = 2
 o.statusline = table.concat({
-    "%#@variable#",                           -- highlight group
-    "%-3.3n",                                 -- buffer number
-    "%f",                                     -- file name
-    "%h%m%r%w",                               -- flags
-    "[%{strlen(&ft)?&ft:'none'},",            -- filetype
-    "%{&encoding},",                          -- encoding
-    "%{&fileformat}]",                        -- file format
-    --"%{FugitiveStatusline()}",              -- fugitive status
-    "%=",                                     -- right align
-    "0x%-8B",                                 -- current char
-    "%-14.(%l,%c%V%) %<%P"                    -- offset
+	"%#@variable#",             -- highlight group
+	"%-3.3n",                   -- buffer number
+	"%f",                       -- file name
+	"%h%m%r%w",                 -- flags
+	"[%{strlen(&ft)?&ft:'none'},", -- filetype
+	"%{&encoding},",            -- encoding
+	"%{&fileformat}]",          -- file format
+	--"%{FugitiveStatusline()}",              -- fugitive status
+	"%=",                       -- right align
+	"0x%-8B",                   -- current char
+	"%-14.(%l,%c%V%) %<%P"      -- offset
 }, " ")
 
 -- Scrolling
