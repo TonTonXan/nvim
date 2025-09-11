@@ -80,3 +80,7 @@ o.clipboard = 'unnamed,unnamedplus'
 
 -- Highlight 80th column
 o.colorcolumn = '80'
+
+-- Show hidden characters
+o.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
