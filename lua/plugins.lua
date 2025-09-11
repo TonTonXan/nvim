@@ -39,7 +39,10 @@ vim.pack.add({
 
     -- Git
     { src = "https://github.com/kdheepak/lazygit.nvim" },
-{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+    { src = "https://github.com/lewis6991/gitsigns.nvim" },
+
+    -- Misc
+    { src = "https://github.com/folke/which-key.nvim" },
 })
 
 -- colorscheme
@@ -48,7 +51,7 @@ vim.g.lightline = {
     colorscheme = 'xoria256',
     active = {
         left = {
-            { 'mode', 'paste' },
+            { 'mode',      'paste' },
             { 'gitbranch', 'readonly', 'filename', 'modified' }
         }
     },
@@ -112,9 +115,9 @@ require('lspconfig').clangd.setup {
 local cmp = require('cmp')
 require('cmp').setup {
     sources = {
-      { name = 'copilot' },
-      { name = 'nvim_lsp' },
-      { name = 'buffer' },
+        { name = 'copilot' },
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
     },
     completion = {
         -- Disable automatic autocomplete
