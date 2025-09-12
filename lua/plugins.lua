@@ -43,6 +43,9 @@ vim.pack.add({
 
     -- Misc
     { src = "https://github.com/folke/which-key.nvim" },
+
+    -- Markdown preview
+    { src = "https://github.com/OXY2DEV/markview.nvim" },
 })
 
 -- colorscheme

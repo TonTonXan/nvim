@@ -71,3 +71,6 @@ map('n', '<leader>fw', builtin.grep_string, { desc = 'Telescope find word' })
 map('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope find diagnostic' })
 map('n', '<leader>fq', builtin.quickfix, { desc = 'Telescope find quickfix' })
 map('n', '<leader>fr', builtin.resume, { desc = 'Telescope resume find' })
+
+-- Markview keymaps
+map('n', '<leader>mt', ':Markview toggle<CR>', { desc = 'Toggle markview' })
