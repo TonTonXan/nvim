@@ -104,7 +104,7 @@ require('nvim-treesitter.configs').setup {
 -- LSP
 require('mason').setup()
 require('mason-lspconfig').setup {
-    ensure_installed = { 'clangd', 'pyright', 'lua_ls' },
+    ensure_installed = { 'clangd', 'pyright', 'lua_ls', 'cmake', 'marksman' },
     automatic_enable = true,
 }
 
