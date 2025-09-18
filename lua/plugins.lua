@@ -5,10 +5,9 @@ vim.pack.add({
     { src = "https://github.com/neozenith/estilo-xoria256" },
     { src = "https://github.com/itchyny/lightline.vim.git" },
     { src = "https://github.com/Bekaboo/deadcolumn.nvim" },
+    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
 
     -- tpope's goodness
-    { src = "https://github.com/tpope/vim-fugitive.git" },
-    { src = "https://github.com/tpope/vim-rhubarb.git" },
     { src = "https://github.com/tpope/vim-sleuth" },
     { src = "https://github.com/tpope/vim-surround.git" },
 
