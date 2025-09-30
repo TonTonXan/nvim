@@ -7,10 +7,6 @@ vim.pack.add({
     { src = "https://github.com/Bekaboo/deadcolumn.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
 
-    -- tpope's goodness
-    { src = "https://github.com/tpope/vim-sleuth" },
-    { src = "https://github.com/tpope/vim-surround.git" },
-
     -- Navigation and fuzzy finders
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
@@ -57,9 +53,6 @@ vim.g.lightline = {
             { 'gitbranch', 'readonly', 'filename', 'modified' }
         }
     },
-    component_function = {
-        gitbranch = 'FugitiveStatusline'
-    }
 }
 
 -- oil
@@ -108,14 +101,14 @@ require('mason-lspconfig').setup {
 }
 
 local cmp_lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig').clangd.setup {
-    -- nvim-cmp almost supports LSP's capabilities so advertise it to LSP servers.
+vim.lsp.config['clangd'] = {
+    -- nvim-cmp almost support LSP's capabilities so advertise it to LSP servers
     capabilities = cmp_lsp_capabilities
 }
 
 -- Completion
 local cmp = require('cmp')
-require('cmp').setup {
+cmp.setup {
     sources = {
         { name = 'copilot' },
         { name = 'nvim_lsp' },
@@ -124,7 +117,14 @@ require('cmp').setup {
     completion = {
         -- Disable automatic autocomplete
         autocomplete = false
-    }
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item.
+    })
 }
 
 -- Copilot completion
