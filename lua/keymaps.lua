@@ -67,7 +67,11 @@ map('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope find grep' })
 map('n', '<leader>fb', builtin.buffers, { desc = 'Telescope find buffers' })
 map('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope find help tags' })
 map('n', '<leader>fs', builtin.lsp_dynamic_workspace_symbols, { desc = 'Telescope find symbols' })
-map('n', '<leader>fw', builtin.grep_string, { desc = 'Telescope find word' })
+map('n', '<leader>fu', builtin.grep_string, { desc = 'Telescope find word' })
 map('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope find diagnostic' })
 map('n', '<leader>fq', builtin.quickfix, { desc = 'Telescope find quickfix' })
 map('n', '<leader>fr', builtin.resume, { desc = 'Telescope resume find' })
+map('n', '<leader>fw', builtin.current_buffer_fuzzy_find, { desc = 'Telescope buffer fuzzy find' })
+
+-- Markview keymaps
+map('n', '<leader>mt', ':Markview toggle<CR>', { desc = 'Toggle markview' })

@@ -5,12 +5,7 @@ vim.pack.add({
     { src = "https://github.com/neozenith/estilo-xoria256" },
     { src = "https://github.com/itchyny/lightline.vim.git" },
     { src = "https://github.com/Bekaboo/deadcolumn.nvim" },
-
-    -- tpope's goodness
-    { src = "https://github.com/tpope/vim-fugitive.git" },
-    { src = "https://github.com/tpope/vim-rhubarb.git" },
-    { src = "https://github.com/tpope/vim-sleuth" },
-    { src = "https://github.com/tpope/vim-surround.git" },
+    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
 
     -- Navigation and fuzzy finders
     { src = "https://github.com/stevearc/oil.nvim" },
@@ -43,6 +38,9 @@ vim.pack.add({
 
     -- Misc
     { src = "https://github.com/folke/which-key.nvim" },
+
+    -- Markdown preview
+    { src = "https://github.com/OXY2DEV/markview.nvim" },
 })
 
 -- colorscheme
@@ -55,9 +53,6 @@ vim.g.lightline = {
             { 'gitbranch', 'readonly', 'filename', 'modified' }
         }
     },
-    component_function = {
-        gitbranch = 'FugitiveStatusline'
-    }
 }
 
 -- oil
@@ -101,19 +96,19 @@ require('nvim-treesitter.configs').setup {
 -- LSP
 require('mason').setup()
 require('mason-lspconfig').setup {
-    ensure_installed = { 'clangd', 'pyright', 'lua_ls' },
+    ensure_installed = { 'clangd', 'pyright', 'lua_ls', 'cmake', 'marksman' },
     automatic_enable = true,
 }
 
 local cmp_lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig').clangd.setup {
-    -- nvim-cmp almost supports LSP's capabilities so advertise it to LSP servers.
+vim.lsp.config['clangd'] = {
+    -- nvim-cmp almost support LSP's capabilities so advertise it to LSP servers
     capabilities = cmp_lsp_capabilities
 }
 
 -- Completion
 local cmp = require('cmp')
-require('cmp').setup {
+cmp.setup {
     sources = {
         { name = 'copilot' },
         { name = 'nvim_lsp' },
@@ -122,7 +117,14 @@ require('cmp').setup {
     completion = {
         -- Disable automatic autocomplete
         autocomplete = false
-    }
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item.
+    })
 }
 
 -- Copilot completion

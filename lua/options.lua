@@ -83,4 +83,4 @@ o.colorcolumn = '80'
 
 -- Show hidden characters
 o.list = true
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
