@@ -20,6 +20,9 @@ map('n', '<leader>w', ':write<CR>', { desc = "Write" })
 map('n', '<leader>q', ':quit<CR>', { desc = "Quit" })
 map('n', '<leader>lf', vim.lsp.buf.format, { desc = "Format" })
 
+map('n', 'grd', vim.lsp.buf.declaration, { desc = "Go to declaration" })
+map('n', 'grD', vim.lsp.buf.definition, { desc = "Go to definition" })
+
 map({ 'n', 'v', 'x' }, '<leader>y', '"+y<CR>')
 map({ 'n', 'v', 'x' }, '<leader>d', '"+d<CR>')
 
@@ -75,3 +78,36 @@ map('n', '<leader>fw', builtin.current_buffer_fuzzy_find, { desc = 'Telescope bu
 
 -- Markview keymaps
 map('n', '<leader>mt', ':Markview toggle<CR>', { desc = 'Toggle markview' })
+
+-- Trouble
+map('n', '<leader>xx', '<cmd>Trouble diagnostics toggle focus=true filter.buf=0<cr>', { desc = "Diagnostics (Trouble)" })
+map('n', '<leader>xs', '<cmd>Trouble symbols toggle focus=true<cr>', { desc = "Symbols (Trouble)" })
+map('n', '<leader>xl', '<cmd>Trouble lsp toggle focus=true win.position=right<cr>', { desc = "LSP Definitions / references / ... (Trouble)" })
+map('n', '<leader>xk', '<cmd>Trouble loclist toggle<cr>', { desc = "Location List (Trouble)" })
+map('n', '<leader>xq', '<cmd>Trouble qflist toggle<cr>', { desc = "Quickfix list (Trouble)" })
+
+-- Github Copilot
+map('n', '<leader>c<Tab>', '<cmd>Copilot panel<CR>', { desc = "Open Copilot panel" })
+map('i', '<C-Right>', '<Plug>(copilot-accept-word)', { desc = "Accept Copilot suggestion word" })
+
+-- Prevent conflicts between copilot and copilotchat
+vim.g.copilot_no_tab_map = true
+vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
+
+-- Copilot Chat
+map('n', '<leader>cc', '<cmd>CopilotChatToggle<CR>', { desc = "Toggle Copilot Chat" })
+map('n', '<leader>cs', '<cmd>CopilotChatStop<CR>', { desc = "Stop Copilot chat current output" })
+map('n', '<leader>cr', '<cmd>CopilotChatReset<CR>', { desc = "Reset Copilot chat window" })
+
+vim.keymap.set('n', '<leader>ce', function()
+  local line = vim.api.nvim_get_current_line()
+  vim.cmd('CopilotChatExplain ' .. line)
+end, { desc = 'Explain current line with CopilotChat' })
+
+-- Gitsigns
+map('n', '<leader>gsh', ':Gitsigns stage_hunk<CR>', { desc = "Stage hunk" })
+map('n', '<leader>gsr', ':Gitsigns reset_hunk<CR>', { desc = "Reset hunk" })
+map('n', '<leader>gsbb', ':Gitsigns blame<CR>', { desc = "Blame buffer" })
+map('n', '<leader>gsbl', ':Gitsigns blame_line<CR>', { desc = "Blame line" })
+map('n', '<leader>gsbt', ':Gitsigns toggle_current_line_blame<CR>', { desc = "Toggle current line blame" })
+map('n', '<leader>gsw', ':Gitsigns toggle_word_diff<CR>', { desc = "Toggle word diff" })

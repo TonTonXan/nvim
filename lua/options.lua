@@ -17,27 +17,27 @@ o.ttyfast = true
 o.number = true
 o.relativenumber = true
 o.history = 1000
-o.mouse = 'a'
+o.mouse = "a"
 o.termguicolors = true
 o.undofile = true
 o.swapfile = false
 
 -- Suffixes : these are the files we are unlikely to edit
-o.suffixes = '.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.out,.toc,.gcda,.gcno'
+o.suffixes = ".bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.out,.toc,.gcda,.gcno"
 
 -- tags file location
-o.tags = '.git/tags,.hg/tags,./tags;'
+o.tags = ".git/tags,.hg/tags,./tags;"
 
-o.background = 'dark'
-o.syntax = 'enable'
+o.background = "dark"
+o.syntax = "enable"
 
 o.ruler = true
 o.textwidth = 0
-o.backspace = 'indent,eol,start'
+o.backspace = "indent,eol,start"
 o.showmatch = true
 o.showmode = true
 o.showcmd = true
-o.signcolumn = 'yes'
+o.signcolumn = "yes"
 o.startofline = false
 
 -- Default indentation and coding style
@@ -58,29 +58,46 @@ o.showfulltag = true
 -- Nice statusbar
 o.laststatus = 2
 o.statusline = table.concat({
-	"%#@variable#",             -- highlight group
-	"%-3.3n",                   -- buffer number
-	"%f",                       -- file name
-	"%h%m%r%w",                 -- flags
+	"%#@variable#", -- highlight group
+	"%-3.3n", -- buffer number
+	"%f", -- file name
+	"%h%m%r%w", -- flags
 	"[%{strlen(&ft)?&ft:'none'},", -- filetype
-	"%{&encoding},",            -- encoding
-	"%{&fileformat}]",          -- file format
+	"%{&encoding},", -- encoding
+	"%{&fileformat}]", -- file format
 	--"%{FugitiveStatusline()}",              -- fugitive status
-	"%=",                       -- right align
-	"0x%-8B",                   -- current char
-	"%-14.(%l,%c%V%) %<%P"      -- offset
+	"%=", -- right align
+	"0x%-8B", -- current char
+	"%-14.(%l,%c%V%) %<%P", -- offset
 }, " ")
 
 -- Scrolling
 o.scrolloff = 3
 o.sidescrolloff = 2
 
--- Copy in both unnamed (*) and selection (+) clipboards
-o.clipboard = 'unnamed,unnamedplus'
-
 -- Highlight 80th column
-o.colorcolumn = '80'
+o.colorcolumn = "80"
 
 -- Show hidden characters
 o.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+vim.g.clipboard = {
+	name = "WslClipboard",
+	copy = {
+		["+"] = "/mnt/c/Windows/System32/clip.exe",
+		["*"] = "/mnt/c/Windows/System32/clip.exe",
+	},
+	paste = {
+		["+"] = '/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		["*"] = '/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+	},
+	cache_enabled = 0,
+}
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
+
