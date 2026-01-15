@@ -11,6 +11,9 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/oil.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
+	{ src = "https://github.com/cbochs/grapple.nvim" },
+	{ src = "https://github.com/ThePrimeagen/harpoon" },
+	{ src = "https://github.com/cbochs/portal.nvim" },
 
 	-- Highlighting and completion
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -150,7 +153,9 @@ require("trouble").setup({
 })
 
 -- Copilot Chat
-require("CopilotChat").setup()
+require("CopilotChat").setup({
+	model = "claude-sonnet-4.5",
+})
 
 -- Gitsigns
 require("gitsigns").setup({

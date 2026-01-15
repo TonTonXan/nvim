@@ -98,6 +98,7 @@ vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, rep
 map('n', '<leader>cc', '<cmd>CopilotChatToggle<CR>', { desc = "Toggle Copilot Chat" })
 map('n', '<leader>cs', '<cmd>CopilotChatStop<CR>', { desc = "Stop Copilot chat current output" })
 map('n', '<leader>cr', '<cmd>CopilotChatReset<CR>', { desc = "Reset Copilot chat window" })
+map('n', '<leader>cm', '<cmd>CopilotChatModels<CR>', { desc = "List Copilot chat models" })
 
 vim.keymap.set('n', '<leader>ce', function()
   local line = vim.api.nvim_get_current_line()
@@ -111,3 +112,4 @@ map('n', '<leader>gsbb', ':Gitsigns blame<CR>', { desc = "Blame buffer" })
 map('n', '<leader>gsbl', ':Gitsigns blame_line<CR>', { desc = "Blame line" })
 map('n', '<leader>gsbt', ':Gitsigns toggle_current_line_blame<CR>', { desc = "Toggle current line blame" })
 map('n', '<leader>gsw', ':Gitsigns toggle_word_diff<CR>', { desc = "Toggle word diff" })
+
