@@ -9,6 +9,9 @@ vim.pack.add({
     -- Git related
     { src = "https://github.com/kdheepak/lazygit.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
+
+    -- Navigation
+    { src = "https://github.com/stevearc/oil.nvim" }
 })
 
 -- Onedark theme config
@@ -45,3 +48,5 @@ lualine.setup{
 -- Gitsigns config
 require('gitsigns').setup()
 
+-- Oil config
+require('oil').setup()

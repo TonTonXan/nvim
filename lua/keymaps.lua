@@ -21,3 +21,6 @@ map('n', '<leader>lf', vim.lsp.buf.format, { desc = "Format" })
 
 -- Lazygit
 map('n', '<leader>lg', '<cmd>LazyGit<CR>', { desc = "Open LazyGit" })
+
+-- Oil
+map('n', '<leader>e', ":Oil<CR>", { desc = "Open Oil" })
