@@ -66,7 +66,27 @@ lualine.setup({
 require("trouble").setup()
 
 -- Treesitter config
-require("nvim-treesitter").setup()
+require("nvim-treesitter").setup({
+	ensure_installed = {
+		"c",
+		"cpp",
+		"python",
+		"lua",
+		"bash",
+		"make",
+		"cmake",
+		"bitbake",
+		"devicetree",
+		"markdown",
+	},
+	sync_install = false,
+	auto_install = true,
+	ignore_install = {},
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+})
 
 -- Gitsigns config
 require("gitsigns").setup()
