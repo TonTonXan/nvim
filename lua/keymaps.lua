@@ -38,3 +38,12 @@ vim.api.nvim_create_user_command("Format", function(args)
 end, { range = true })
 
 map("n", "<leader>lf", "<cmd>Format<CR>")
+
+-- Todocomments
+map("n", "<leader>tq", "<cmd>TodoQuickFix<CR>")
+map("n", "<leader>tn", function()
+	require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+map("n", "<leader>tp", function()
+	require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })

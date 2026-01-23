@@ -7,6 +7,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/folke/trouble.nvim" },
+	{ src = "https://github.com/ntpeters/vim-better-whitespace.git" },
 
 	-- Git related
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
@@ -26,6 +27,8 @@ vim.pack.add({
 
 	-- Utils
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/folke/which-key.nvim" },
+	{ src = "https://github.com/folke/todo-comments.nvim" },
 })
 
 -- Onedark theme config
@@ -71,7 +74,7 @@ require("gitsigns").setup()
 -- Oil config
 require("oil").setup()
 
--- Blink config
+-- Blink config -> completion plugin
 require("blink-cmp").setup({
 	completion = {
 		list = { selection = { preselect = false, auto_insert = true } },
@@ -94,5 +97,14 @@ require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "black" },
+		c = { "clang_format" },
+	},
+	formatters = {
+		clang_format = {
+			prepend_args = { "--style=file", "--fallback-style=LLVM" },
+		},
 	},
 })
+
+-- Todocomments
+require("todo-comments").setup()
