@@ -29,6 +29,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
+	{ src = "https://github.com/windwp/nvim-autopairs" },
 })
 
 -- Onedark theme config
@@ -128,3 +129,6 @@ require("conform").setup({
 
 -- Todocomments
 require("todo-comments").setup()
+
+-- Autopairs
+require("nvim-autopairs").setup()
