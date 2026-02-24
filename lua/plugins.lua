@@ -79,6 +79,7 @@ require("nvim-treesitter").setup({
 		"bitbake",
 		"devicetree",
 		"markdown",
+		"rust",
 	},
 	sync_install = false,
 	auto_install = true,
@@ -106,6 +107,9 @@ require("blink-cmp").setup({
 vim.lsp.enable("pyright")
 vim.lsp.enable("clangd")
 vim.lsp.enable("stylua")
+vim.lsp.enable("cmake")
+vim.lsp.enable("rust_analyzer")
+
 
 -- Mason setup
 require("mason").setup()
@@ -119,6 +123,9 @@ require("conform").setup({
 		lua = { "stylua" },
 		python = { "black" },
 		c = { "clang_format" },
+		cmake = { "cmake_format" },
+		cpp = { "clang_format " },
+		rust = { "rustfmt" },
 	},
 	formatters = {
 		clang_format = {

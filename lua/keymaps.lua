@@ -17,7 +17,6 @@ map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close split" })
 
 map("n", "<leader>w", ":write<CR>", { desc = "Write" })
 map("n", "<leader>q", ":quit<CR>", { desc = "Quit" })
--- map('n', '<leader>lf', vim.lsp.buf.format, { desc = "Format" })
 
 -- Lazygit
 map("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
@@ -47,3 +46,27 @@ end, { desc = "Next todo comment" })
 map("n", "<leader>tp", function()
 	require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
+
+-- Trouble
+map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
+map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
+map("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
+map(
+	"n",
+	"<leader>xl",
+	"<cmd>Trouble lsp toggle focus=false win.position=right<CR>",
+	{ desc = "LSP Definitions / References / ... (Trouble)" }
+)
+map("n", "<leader>xL", "<cmd>Trouble loclist toggle<CR>", { desc = "Location list (Trouble)" })
+map("n", "<leader>xQ", "<cmd>Trouble qflist toggle<CR>", { desc = "Location list (Trouble)" })
+
+-- LSP
+map("n", "gd", function()
+	vim.lsp.buf.definition()
+end, { desc = "Goto definition" })
+map("n", "gD", function()
+	vim.lsp.buf.declaration()
+end, { desc = "Goto declaration" })
+map("n", "gt", function()
+	vim.lsp.buf.type_definition()
+end, { desc = "Goto type definition" })
