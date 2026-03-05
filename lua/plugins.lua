@@ -30,6 +30,10 @@ vim.pack.add({
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
+
+	-- Copilot
+	{ src = "https://github.com/github/copilot.vim" },
+	{ src = "https://github.com/CopilotC-Nvim/CopilotChat.nvim" },
 })
 
 -- Onedark theme config
@@ -80,6 +84,7 @@ require("nvim-treesitter").setup({
 		"devicetree",
 		"markdown",
 		"rust",
+		"yaml",
 	},
 	sync_install = false,
 	auto_install = true,
@@ -97,7 +102,7 @@ require("gitsigns").setup()
 require("oil").setup()
 
 -- Blink config -> completion plugin
-require("blink-cmp").setup({
+require("blink.cmp").setup({
 	completion = {
 		list = { selection = { preselect = false, auto_insert = true } },
 	},
@@ -106,10 +111,9 @@ require("blink-cmp").setup({
 -- LSP config
 vim.lsp.enable("pyright")
 vim.lsp.enable("clangd")
-vim.lsp.enable("stylua")
 vim.lsp.enable("cmake")
 vim.lsp.enable("rust_analyzer")
-
+vim.lsp.enable("yamlls")
 
 -- Mason setup
 require("mason").setup()
@@ -124,8 +128,9 @@ require("conform").setup({
 		python = { "black" },
 		c = { "clang_format" },
 		cmake = { "cmake_format" },
-		cpp = { "clang_format " },
+		cpp = { "clang_format" },
 		rust = { "rustfmt" },
+		yaml = { "yamlfmt" },
 	},
 	formatters = {
 		clang_format = {
@@ -139,3 +144,23 @@ require("todo-comments").setup()
 
 -- Autopairs
 require("nvim-autopairs").setup()
+
+-- telescope
+require("telescope").setup({
+	pickers = {
+		git_files = {
+			theme = "ivy",
+		},
+		find_files = {
+			theme = "ivy",
+		},
+		live_grep = {
+			theme = "ivy",
+		},
+	},
+})
+
+-- Copilot Chat
+require("CopilotChat").setup({
+	model = "claude-sonnet-4.6",
+})

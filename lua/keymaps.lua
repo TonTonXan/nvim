@@ -36,6 +36,7 @@ vim.api.nvim_create_user_command("Format", function(args)
 	require("conform").format({ async = true, lsp_format = "fallback", range = range })
 end, { range = true })
 
+-- Format
 map("n", "<leader>lf", "<cmd>Format<CR>")
 
 -- Todocomments
@@ -46,6 +47,51 @@ end, { desc = "Next todo comment" })
 map("n", "<leader>tp", function()
 	require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
+
+-- Telescope keymaps (lazy-loaded: telescope only loads when a keymap is triggered)
+local function b(name)
+	return function(...)
+		return require("telescope.builtin")[name](...)
+	end
+end
+
+local function SearchClasses()
+	b("lsp_dynamic_workspace_symbols")({
+		symbols = { "Class" },
+		prompt_title = "Search Classes",
+	})
+end
+
+local function SearchFunctions()
+	b("lsp_dynamic_workspace_symbols")({
+		symbols = { "Function", "Method" },
+		prompt_title = "Search Functions",
+	})
+end
+
+local function SearchVariables()
+	b("lsp_dynamic_workspace_symbols")({
+		symbols = { "Variable", "Constant" },
+		prompt_title = "Search Variables",
+	})
+end
+
+map("n", "<leader>fe", b("find_files"), { desc = "Telescope find files" })
+map("n", "<leader>fk", b("keymaps"), { desc = "Telescope find keymaps" })
+map("n", "<leader>fo", b("oldfiles"), { desc = "Telescope find old files" })
+map("n", "<leader>ft", b("git_files"), { desc = "Telescope find git files" })
+map("n", "<leader>ff", SearchFunctions, { desc = "Telescope find functions" })
+map("n", "<leader>fc", SearchClasses, { desc = "Telescope find classes" })
+map("n", "<leader>fv", SearchVariables, { desc = "Telescope find variables" })
+map("n", "<leader>fg", b("live_grep"), { desc = "Telescope find grep" })
+map("n", "<leader>fb", b("buffers"), { desc = "Telescope find buffers" })
+map("n", "<leader>fh", b("help_tags"), { desc = "Telescope find help tags" })
+map("n", "<leader>fs", b("lsp_dynamic_workspace_symbols"), { desc = "Telescope find symbols" })
+map("n", "<leader>fu", b("grep_string"), { desc = "Telescope find word" })
+map("n", "<leader>fd", b("diagnostics"), { desc = "Telescope find diagnostic" })
+map("n", "<leader>fq", b("quickfix"), { desc = "Telescope find quickfix" })
+map("n", "<leader>fr", b("resume"), { desc = "Telescope resume find" })
+map("n", "<leader>fw", b("current_buffer_fuzzy_find"), { desc = "Telescope buffer fuzzy find" })
 
 -- Trouble
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
@@ -70,3 +116,23 @@ end, { desc = "Goto declaration" })
 map("n", "gt", function()
 	vim.lsp.buf.type_definition()
 end, { desc = "Goto type definition" })
+
+-- Copilot Chat
+map("n", "<leader>cc", "<cmd>CopilotChatToggle<CR>", { desc = "Toggle Copilot Chat" })
+map("n", "<leader>cs", "<cmd>CopilotChatStop<CR>", { desc = "Stop Copilot chat current output" })
+map("n", "<leader>cr", "<cmd>CopilotChatReset<CR>", { desc = "Reset Copilot chat window" })
+map("n", "<leader>cm", "<cmd>CopilotChatModels<CR>", { desc = "List Copilot chat models" })
+
+vim.keymap.set("n", "<leader>ce", function()
+	local line = vim.api.nvim_get_current_line()
+	vim.cmd("CopilotChatExplain " .. line)
+end, { desc = "Explain current line with CopilotChat" })
+
+-- Github Copilot
+map("n", "<leader>c<Tab>", "<cmd>Copilot panel<CR>", { desc = "Open Copilot panel" })
+map("i", "<C-Right>", "<Plug>(copilot-accept-word)", { desc = "Accept Copilot suggestion word" })
+
+-- Prevent conflicts between copilot and copilotchat
+vim.g.copilot_no_tab_map = true
+vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
+

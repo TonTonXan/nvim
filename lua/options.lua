@@ -8,11 +8,8 @@ g.mapleader = " "
 g.have_nerd_font = true
 
 -- Global settings
-o.compatible = false
-o.hidden = true
 o.autoread = true
 o.visualbell = false
-o.ttyfast = true
 o.number = true
 o.relativenumber = true
 o.history = 1000
@@ -40,6 +37,7 @@ o.smartindent = true
 
 -- Search setting
 o.incsearch = true
+o.ignorecase = true
 o.smartcase = true
 o.infercase = true
 o.hlsearch = true
@@ -52,5 +50,25 @@ o.sidescrolloff = 2
 -- Highlight 80th column
 o.colorcolumn = "80"
 
--- vim.opt.listchars = {eol='¬',tab='>·',trail='~',extends='>',precedes='<',space='·' }
--- o.list = true
+-- Show hidden characters
+o.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+vim.g.clipboard = {
+	name = "WslClipboard",
+	copy = {
+		["+"] = "/mnt/c/Windows/System32/clip.exe",
+		["*"] = "/mnt/c/Windows/System32/clip.exe",
+	},
+	paste = {
+		["+"] = '/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		["*"] = '/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+	},
+	cache_enabled = 0,
+}
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
