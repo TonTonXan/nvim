@@ -1,59 +1,66 @@
-local o = vim.o
+local opt = vim.opt
 local g = vim.g
 
--- Leader key
+-- Leader key must be set before any plugin loads to ensure keymaps bind correctly.
 g.maplocalleader = " "
 g.mapleader = " "
 
 g.have_nerd_font = true
+-- Disables Copilot's default Tab binding; <S-Tab> is used instead to avoid conflict with blink.cmp.
+g.copilot_no_tab_map = true
 
--- Global settings
-o.autoread = true
-o.visualbell = false
-o.number = true
-o.relativenumber = true
-o.history = 1000
-o.mouse = "a"
-o.termguicolors = true
-o.undofile = true
-o.swapfile = false
+opt.autoread = true
+opt.visualbell = false
+opt.number = true
+opt.relativenumber = true
+opt.history = 1000
+opt.mouse = "a"
+opt.termguicolors = true
+opt.undofile = true
+opt.swapfile = false
+opt.updatetime = 250
+opt.timeoutlen = 300
 
-o.ruler = true
-o.textwidth = 0
-o.backspace = "indent,eol,start"
-o.showmatch = true
-o.showmode = true
-o.showcmd = true
-o.signcolumn = "yes"
-o.startofline = false
+opt.textwidth = 0 -- Disables automatic hard line-wrapping; formatting is handled by formatters.
+opt.showmatch = true
+opt.showmode = false -- lualine shows the mode
+opt.showcmd = true
+opt.signcolumn = "yes"
+opt.startofline = false -- Preserves cursor column on jumps (G, gg, Ctrl-D, etc.).
+
+-- Split behavior
+opt.splitright = true
+opt.splitbelow = true
+
+-- Cursor and scrolling
+opt.cursorline = true
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+
+-- Line wrapping
+opt.wrap = false
 
 -- Default indentation and coding style
-o.shiftwidth = 4
-o.tabstop = 4
-o.expandtab = true
-o.softtabstop = 4
-o.autoindent = true
-o.smartindent = true
+opt.shiftwidth = 4
+opt.tabstop = 4
+opt.expandtab = true
+opt.softtabstop = 4
+opt.autoindent = true
+opt.smartindent = true
 
--- Search setting
-o.incsearch = true
-o.ignorecase = true
-o.smartcase = true
-o.infercase = true
-o.hlsearch = true
-o.showfulltag = true
+-- Search settings
+opt.incsearch = true
+opt.ignorecase = true
+opt.smartcase = true
+opt.infercase = true
+opt.hlsearch = true
 
--- Scrolling
-o.scrolloff = 3
-o.sidescrolloff = 2
+opt.colorcolumn = "80"
 
--- Highlight 80th column
-o.colorcolumn = "80"
+opt.list = true
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
--- Show hidden characters
-o.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
+-- WSL2 does not share the clipboard with Windows by default; this bridges yanking to clip.exe.
 vim.g.clipboard = {
 	name = "WslClipboard",
 	copy = {
@@ -66,9 +73,3 @@ vim.g.clipboard = {
 	},
 	cache_enabled = 0,
 }
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank()
-	end,
-})
