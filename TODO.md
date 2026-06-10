@@ -1,5 +1,24 @@
 # TODO
 
+## Install win32yank (clipboard)
+
+`win32yank.exe` eliminates the ~300-500ms paste delay caused by PowerShell startup.
+Without it the config falls back to clip.exe + PowerShell, which works but is slow.
+
+Run in WSL:
+
+```sh
+curl -sLo /tmp/win32yank.zip \
+  https://github.com/equalsraf/win32yank/releases/latest/download/win32yank-x64.zip
+unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+chmod +x /tmp/win32yank.exe
+sudo mv /tmp/win32yank.exe /usr/local/bin/
+```
+
+Verify with `win32yank.exe --version`. Neovim picks it up automatically on next launch.
+
+---
+
 ## Clean orphaned plugins
 
 The lock file (`nvim-pack-lock.json`) contains ~20 entries from the old config that are

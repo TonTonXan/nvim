@@ -60,16 +60,31 @@ opt.colorcolumn = "80"
 opt.list = true
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
--- WSL2 does not share the clipboard with Windows by default; this bridges yanking to clip.exe.
-vim.g.clipboard = {
-	name = "WslClipboard",
-	copy = {
-		["+"] = "/mnt/c/Windows/System32/clip.exe",
-		["*"] = "/mnt/c/Windows/System32/clip.exe",
-	},
-	paste = {
-		["+"] = '/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-		["*"] = '/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-	},
-	cache_enabled = 0,
-}
+-- Sync all yank/paste operations with the Windows clipboard.
+opt.clipboard = "unnamedplus"
+
+-- WSL2 does not share the clipboard with Windows by default.
+-- Prefer win32yank.exe (fast, purpose-built); fall back to clip.exe + PowerShell if not installed.
+-- See TODO.md for win32yank installation instructions.
+if vim.fn.executable("win32yank.exe") == 1 then
+	vim.g.clipboard = {
+		name = "win32yank",
+		copy  = { ["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf" },
+		paste = { ["+"] = "win32yank.exe -o --lf",   ["*"] = "win32yank.exe -o --lf" },
+		cache_enabled = 0,
+	}
+else
+	-- Paste via PowerShell has ~300-500ms startup delay; install win32yank to eliminate it.
+	vim.g.clipboard = {
+		name = "WslClipboard",
+		copy  = {
+			["+"] = "/mnt/c/Windows/System32/clip.exe",
+			["*"] = "/mnt/c/Windows/System32/clip.exe",
+		},
+		paste = {
+			["+"] = '/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+			["*"] = '/mnt/c/Windows/SysWOW64/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		},
+		cache_enabled = 0,
+	}
+end
