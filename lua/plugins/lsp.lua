@@ -60,15 +60,15 @@ require("conform").setup({
 -- Linter config.
 -- clang-tidy requires compile_commands.json in the project root to resolve includes.
 -- Generate it with: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ...
-require("lint").setup({
-	linters_by_ft = {
-		c      = { "clangtidy" },
-		cpp    = { "clangtidy" },
-		python = { "ruff" },
-		bash   = { "shellcheck" },
-		sh     = { "shellcheck" },
-	},
-})
+-- nvim-lint has no setup(); linters are configured by assigning linters_by_ft directly.
+local lint = require("lint")
+lint.linters_by_ft = {
+	c      = { "clangtidy" },
+	cpp    = { "clangtidy" },
+	python = { "ruff" },
+	bash   = { "shellcheck" },
+	sh     = { "shellcheck" },
+}
 
 -- Completion with LSP, path, snippets, buffer, and Copilot sources
 require("blink.cmp").setup({

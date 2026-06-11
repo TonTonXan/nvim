@@ -10,4 +10,9 @@ require("telescope").setup({
 	},
 })
 
-require("telescope").load_extension("fzf")
+-- fzf-native requires a one-time manual build; skip gracefully if not yet compiled.
+-- See TODO.md for the build command.
+local ok, err = pcall(require("telescope").load_extension, "fzf")
+if not ok then
+	vim.notify("telescope-fzf-native not built (fuzzy matching will be slower).\nSee TODO.md for the build command.", vim.log.levels.WARN)
+end

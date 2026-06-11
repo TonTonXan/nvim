@@ -1,5 +1,19 @@
 # TODO
 
+## Build telescope-fzf-native (REQUIRED for fast fuzzy search)
+
+The fzf sorter requires a compiled C library. Without it telescope works but is slower,
+and a warning is shown on startup. Run once in WSL:
+
+```sh
+cd ~/.local/share/nvim/site/pack/core/opt/telescope-fzf-native.nvim
+cmake . -B build && cmake --build build
+```
+
+Requires `cmake` and `make` (install with `sudo apt install cmake build-essential`).
+
+---
+
 ## Install win32yank (clipboard)
 
 `win32yank.exe` eliminates the ~300-500ms paste delay caused by PowerShell startup.

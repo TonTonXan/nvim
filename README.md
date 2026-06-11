@@ -75,7 +75,7 @@ clang-tidy      shellcheck      codelldb        debugpy
 | `mason-org/mason-lspconfig.nvim` | Bridge Mason installs to `vim.lsp.enable()` |
 | `stevearc/conform.nvim` | Formatting (runs on save) |
 | `mfussenegger/nvim-lint` | Linting (clang-tidy, ruff, shellcheck) |
-| `lewis6991/fidget.nvim` | LSP progress spinner |
+| `j-hui/fidget.nvim` | LSP progress spinner |
 | `p00f/clangd_extensions.nvim` | clangd extras: inlay hints, AST view, header/source switch |
 | `mrcjkb/rustaceanvim` | Full rust-analyzer integration |
 

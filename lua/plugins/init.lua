@@ -1,3 +1,7 @@
+-- Prevent git from hanging on any credential prompt during plugin installation.
+-- All plugin URLs are public repos and need no authentication.
+vim.env.GIT_TERMINAL_PROMPT = "0"
+
 -- Use :lua vim.pack.update() to update the plugins
 vim.pack.add({
 
@@ -32,7 +36,7 @@ vim.pack.add({
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/mfussenegger/nvim-lint" },
-	{ src = "https://github.com/lewis6991/fidget.nvim" },
+	{ src = "https://github.com/j-hui/fidget.nvim" },
 	{ src = "https://github.com/p00f/clangd_extensions.nvim" },
 	-- rustaceanvim manages rust_analyzer automatically; do not call vim.lsp.enable("rust_analyzer")
 	{ src = "https://github.com/mrcjkb/rustaceanvim" },
@@ -66,3 +70,4 @@ vim.pack.add({
 	{ src = "https://github.com/github/copilot.vim" },
 	{ src = "https://github.com/CopilotC-Nvim/CopilotChat.nvim" },
 })
+
