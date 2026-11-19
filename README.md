@@ -255,7 +255,11 @@ cd ~/.local/share/nvim/pack/*/start/telescope-fzf-native.nvim
 cmake . -B build && cmake --build build
 ```
 
-4. Run `:lua vim.pack.clean()` to remove any orphaned plugins from previous configurations.
+4. To remove plugins no longer declared in `lua/plugins/init.lua`, run:
+
+   ```
+   :lua vim.pack.del(vim.tbl_map(function(p) return p.spec.name end, vim.tbl_filter(function(p) return not p.active end, vim.pack.get())))
+   ```
 
 ### clang-tidy
 
