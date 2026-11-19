@@ -2,7 +2,6 @@
 require("which-key").setup()
 require("which-key").add({
 	{ "<leader>b", group = "Buffers" },
-	{ "<leader>c", group = "Copilot" },
 	{ "<leader>C", group = "Crates (Cargo.toml)" },
 	{ "<leader>d", group = "Debug" },
 	{ "<leader>f", group = "Find (telescope)" },

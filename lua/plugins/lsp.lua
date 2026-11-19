@@ -103,20 +103,12 @@ lint.linters_by_ft = {
 	sh     = { "shellcheck" },
 }
 
--- Completion with LSP, path, snippets, buffer, and Copilot sources
+-- Completion with LSP, path, snippets, and buffer sources
 require("blink.cmp").setup({
 	completion = {
 		list = { selection = { preselect = false, auto_insert = true } },
 	},
 	sources = {
-		default = { "lsp", "path", "snippets", "buffer", "copilot" },
-		providers = {
-			copilot = {
-				name = "copilot",
-				module = "blink-copilot",
-				score_offset = 100,
-				async = true,
-			},
-		},
+		default = { "lsp", "path", "snippets", "buffer" },
 	},
 })

@@ -33,7 +33,6 @@ vim.pack.add({
 
 	-- Autocompletion
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("*") },
-	{ src = "https://github.com/fang2hou/blink-copilot" },
 
 	-- LSP
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
@@ -70,9 +69,5 @@ vim.pack.add({
 	{ src = "https://github.com/folke/todo-comments.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/kylechui/nvim-surround" },
-
-	-- Copilot
-	{ src = "https://github.com/github/copilot.vim" },
-	{ src = "https://github.com/CopilotC-Nvim/CopilotChat.nvim" },
 })
 

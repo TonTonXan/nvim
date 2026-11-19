@@ -170,19 +170,3 @@ map("n", "<leader>ms", "<cmd>CMakeSettings<CR>", { desc = "Settings" })
 
 -- Python
 map("n", "<leader>pv", "<cmd>VenvSelect<CR>", { desc = "Select virtualenv" })
-
--- Copilot Chat
-map("n", "<leader>cc", "<cmd>CopilotChatToggle<CR>", { desc = "Toggle Copilot Chat" })
-map("n", "<leader>cs", "<cmd>CopilotChatStop<CR>", { desc = "Stop Copilot chat output" })
-map("n", "<leader>cr", "<cmd>CopilotChatReset<CR>", { desc = "Reset Copilot chat" })
-map("n", "<leader>cm", "<cmd>CopilotChatModels<CR>", { desc = "List Copilot chat models" })
-
-map("n", "<leader>ce", function()
-	local line = vim.api.nvim_get_current_line()
-	vim.cmd("CopilotChatExplain " .. line)
-end, { desc = "Explain current line with CopilotChat" })
-
--- Copilot inline suggestions (Tab is reserved for blink.cmp; S-Tab accepts Copilot instead).
-map("n", "<leader>c<Tab>", "<cmd>Copilot panel<CR>", { desc = "Open Copilot panel" })
-map("i", "<C-Right>", "<Plug>(copilot-accept-word)", { desc = "Accept Copilot word" })
-map("i", "<S-Tab>", 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })

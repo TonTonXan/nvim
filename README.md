@@ -43,7 +43,6 @@ clang-tidy      shellcheck      codelldb        debugpy
 │       ├── lsp.lua           LSP servers, Mason, conform, nvim-lint, blink.cmp
 │       ├── navigation.lua    Oil, Telescope + fzf-native
 │       ├── git.lua           gitsigns
-│       ├── ai.lua            CopilotChat
 │       ├── debug.lua         nvim-dap (codelldb for C/C++/Rust, debugpy for Python)
 │       ├── testing.lua       neotest (pytest, cargo test, GoogleTest)
 │       ├── tools.lua         crates.nvim, venv-selector, cmake-tools
@@ -82,8 +81,7 @@ clang-tidy      shellcheck      codelldb        debugpy
 ### Completion
 | Plugin | Role |
 |--------|------|
-| `saghen/blink.cmp` | Completion engine (LSP, path, snippets, buffer, Copilot) |
-| `fang2hou/blink-copilot` | Copilot source for blink.cmp |
+| `saghen/blink.cmp` | Completion engine (LSP, path, snippets, buffer) |
 
 ### Navigation
 | Plugin | Role |
@@ -124,8 +122,6 @@ clang-tidy      shellcheck      codelldb        debugpy
 ### AI
 | Plugin | Role |
 |--------|------|
-| `github/copilot.vim` | Inline Copilot suggestions |
-| `CopilotC-Nvim/CopilotChat.nvim` | Copilot chat panel (using claude-sonnet-4.6) |
 
 ### Utilities
 | Plugin | Role |
@@ -236,15 +232,6 @@ Leader key: `<Space>`
 | `<leader>Cu` | Upgrade crate under cursor |
 | `<leader>CU` | Upgrade all crates |
 | `<leader>Ct` | Toggle inline version display |
-
-### Copilot — `<leader>c`
-| Key | Action |
-|-----|--------|
-| `<C-Right>` (insert) | Accept next word |
-| `<S-Tab>` (insert) | Accept full suggestion |
-| `<leader>cc` | Toggle CopilotChat panel |
-| `<leader>ce` | Explain current line |
-| `<leader>cs/cr/cm` | Stop / reset / list models |
 
 ### Surround (`nvim-surround`)
 | Key | Action |

@@ -6,8 +6,6 @@ g.maplocalleader = " "
 g.mapleader = " "
 
 g.have_nerd_font = true
--- Disables Copilot's default Tab binding; <S-Tab> is used instead to avoid conflict with blink.cmp.
-g.copilot_no_tab_map = true
 
 opt.autoread = true
 opt.visualbell = false
