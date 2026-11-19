@@ -7,6 +7,7 @@ require("which-key").add({
 	{ "<leader>d", group = "Debug" },
 	{ "<leader>f", group = "Find (telescope)" },
 	{ "<leader>g", group = "Git" },
+	{ "<leader>h", group = "Harpoon" },
 	{ "<leader>l", group = "LSP" },
 	{ "<leader>m", group = "CMake" },
 	{ "<leader>n", group = "Neotest" },

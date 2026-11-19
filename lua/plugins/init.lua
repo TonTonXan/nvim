@@ -10,6 +10,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/folke/trouble.nvim" },
 	{ src = "https://github.com/ntpeters/vim-better-whitespace.git" },
@@ -21,6 +22,10 @@ vim.pack.add({
 
 	-- Navigation
 	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/folke/flash.nvim" },
+	{ src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
+	{ src = "https://github.com/stevearc/aerial.nvim" },
+	{ src = "https://github.com/Bekaboo/dropbar.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
 	-- NOTE: telescope-fzf-native requires a manual build step after install:
 	--   cd ~/.local/share/nvim/pack/*/start/telescope-fzf-native.nvim && cmake . -B build && cmake --build build

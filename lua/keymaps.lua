@@ -101,24 +101,43 @@ map("n", "<leader>fw", b("current_buffer_fuzzy_find"), { desc = "Find in buffer"
 -- Trouble
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
 map("n", "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Buffer diagnostics (Trouble)" })
-map("n", "<leader>xs", "<cmd>Trouble symbols toggle focus=false<CR>", { desc = "Symbols (Trouble)" })
 map("n", "<leader>xl", "<cmd>Trouble lsp toggle focus=false win.position=right<CR>", { desc = "LSP definitions/references (Trouble)" })
 map("n", "<leader>xL", "<cmd>Trouble loclist toggle<CR>", { desc = "Location list (Trouble)" })
 map("n", "<leader>xQ", "<cmd>Trouble qflist toggle<CR>", { desc = "Quickfix list (Trouble)" })
 
 -- LSP
-map("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
+map("n", "gd", b("lsp_definitions"), { desc = "Goto definition" })
 map("n", "gD", vim.lsp.buf.declaration, { desc = "Goto declaration" })
 map("n", "gt", vim.lsp.buf.type_definition, { desc = "Goto type definition" })
 map("n", "gi", vim.lsp.buf.implementation, { desc = "Goto implementation" })
-map("n", "gr", vim.lsp.buf.references, { desc = "Goto references" })
+map("n", "gr", b("lsp_references"), { desc = "Goto references" })
+map("n", "<C-w>gd", "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Definition in split" })
+map("n", "gai", vim.lsp.buf.incoming_calls, { desc = "Incoming calls" })
+map("n", "gao", vim.lsp.buf.outgoing_calls, { desc = "Outgoing calls" })
+map("n", "<leader>lh", "<cmd>LspClangdSwitchSourceHeader<CR>", { desc = "Switch header/source" })
+map("n", "<leader>fS", b("lsp_document_symbols"), { desc = "Document symbols" })
+map("n", "<leader>xs", "<cmd>AerialToggle!<CR>", { desc = "Symbols outline (Aerial)" })
 map("n", "K", vim.lsp.buf.hover, { desc = "LSP hover" })
 map("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 map("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code action" })
 
 -- Diagnostics navigation
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
+map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "Next diagnostic" })
+map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "Previous diagnostic" })
+
+-- Flash
+map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash jump" })
+map({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash treesitter" })
+
+-- Harpoon
+map("n", "<leader>ha", function() require("harpoon"):list():add() end, { desc = "Harpoon add file" })
+map("n", "<leader>hh", function()
+	local harpoon = require("harpoon")
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Harpoon menu" })
+for index = 1, 5 do
+	map("n", "<leader>" .. index, function() require("harpoon"):list():select(index) end, { desc = "Harpoon file " .. index })
+end
 
 -- Debug (nvim-dap)
 map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle breakpoint" })

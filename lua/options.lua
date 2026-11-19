@@ -55,6 +55,9 @@ opt.smartcase = true
 opt.infercase = true
 opt.hlsearch = true
 
+-- Let gf and :find resolve files in subdirectories (e.g. #include paths).
+opt.path:append("**")
+
 opt.colorcolumn = "80"
 
 opt.list = true

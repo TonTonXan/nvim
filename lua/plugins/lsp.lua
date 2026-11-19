@@ -11,11 +11,44 @@ require("mason-lspconfig").setup({ automatic_enable = true })
 -- Explicit enables cover servers installed outside of Mason (e.g. distro packages).
 vim.lsp.enable("pyright")
 vim.lsp.enable("clangd")
-vim.lsp.enable("cmake")
-vim.lsp.enable("yamlls")
-vim.lsp.enable("bashls")
-vim.lsp.enable("taplo")
-vim.lsp.enable("jsonls")
+
+-- clangd needs --query-driver to find the system headers of a cross toolchain.
+-- Set it at runtime with :ClangdQueryDriver <glob>; the value persists across sessions.
+local query_driver_file = vim.fn.stdpath("state") .. "/clangd_query_driver"
+
+local function clangd_cmd(query_driver)
+	local cmd = { "clangd", "--background-index", "--header-insertion=never" }
+	if query_driver and query_driver ~= "" then
+		table.insert(cmd, "--query-driver=" .. query_driver)
+	end
+	return cmd
+end
+
+local saved_driver = vim.fn.filereadable(query_driver_file) == 1 and vim.fn.readfile(query_driver_file)[1] or nil
+vim.lsp.config("clangd", { cmd = clangd_cmd(saved_driver) })
+
+local function set_query_driver(driver)
+	if not driver or driver == "" then
+		return
+	end
+	vim.fn.writefile({ driver }, query_driver_file)
+	vim.lsp.config("clangd", { cmd = clangd_cmd(driver) })
+	vim.cmd("LspRestart clangd")
+end
+
+-- Without an argument, prompt for the path with file completion (Tab).
+vim.api.nvim_create_user_command("ClangdQueryDriver", function(args)
+	if args.args ~= "" then
+		set_query_driver(args.args)
+		return
+	end
+	vim.ui.input({
+		prompt = "Cross compiler path or glob (e.g. /opt/x/bin/*g++): ",
+		default = saved_driver or "",
+		completion = "file",
+	}, set_query_driver)
+end, { nargs = "?", complete = "file", desc = "Set the clangd --query-driver glob and restart clangd" })
+
 -- Do NOT call vim.lsp.enable("rust_analyzer") here; rustaceanvim manages it.
 
 -- lua_ls needs the Neovim runtime in its workspace library to resolve vim.* globals.
